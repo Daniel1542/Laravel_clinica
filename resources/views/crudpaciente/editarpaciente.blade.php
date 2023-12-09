@@ -56,9 +56,8 @@
         <input type="text" id="Informacoes" name="Informacoes" value="{{ $paciente->Informacoes }}" required>
       </div>
       <div id="bota" class="form-group">
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <button type="submit" class="btn btn-primary mr-2">Salvar Alterações</button>
       </div>
-    </div>
   </form>
 </section>
 @endsection

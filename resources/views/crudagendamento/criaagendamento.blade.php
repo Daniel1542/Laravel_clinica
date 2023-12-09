@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <label for="title">Data do agendamento:</label>
-        <input type="date" id="Data do agendamento" name="Data do agendamento" required>
+        <input type="date" id="data_hora_agendamento" name="data_hora_agendamento" required>
       </div>
       <div class="form-group"> 
         <label for="title">Paciente:</label>
@@ -28,9 +28,19 @@
       </div>
       <div class="form-group">
         <label for="title">tipo de consulta:</label>
-        <input type="text" id="medico" name="medico" required>
+        <input type="text" id="tipo_consulta" name="tipo_consulta" required>
       </div>
-     
+      <div class="form-group">
+        <label for="title">Retorno:</label>
+        <div>
+          <label for="sim">Sim:</label>
+          <input type="checkbox" id="sim" name="is_retorno " value="sim" {{ $agendamento->is_retorno  === 'sim' ? 'checked' : '' }}>
+        </div>
+        <div>
+          <label for="nao">Não:</label>
+          <input type="checkbox" id="nao" name="is_retorno " value="nao" {{ $agendamento->is_retorno  === 'nao' ? 'checked' : '' }}>
+        </div>
+      </div>
       <div id="bota" class="form-group">
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
       </div>

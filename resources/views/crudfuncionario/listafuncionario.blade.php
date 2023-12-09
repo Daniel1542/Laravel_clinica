@@ -23,7 +23,7 @@
   <!-- Tabela para listar os funcionarios -->
   <div class="container">
     <table class="table" id="caixa2">
-      <tbody>
+      <tbody class="table_body">
         @foreach($funcionario as $funcionarios)
           <tr id="caixa3">            
             <td>Nome: {{ $funcionarios->NomeCompleto }}</td>
@@ -31,7 +31,7 @@
             <td>CPF: {{ $funcionarios->CPF }}</td>
             <td>Telefone: {{ $funcionarios->Telefone }}</td>
             <td>Email: {{ $funcionarios->Email }}</td>
-            <td id="caixa3">
+            <td>
               <form action="{{ route('funcionarios.show', ['id' => $funcionarios->id]) }}" method="GET" style="display: inline;">
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">Ver Detalhes</button>

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class agendamento extends Model
+class Agendamento extends Model
 {
     use HasFactory;
-    protected $table = 'agendamento';
+    protected $table = 'agendamentos';
     protected $fillable = [
         'Codigo',
         'data_hora_agendamento',
@@ -17,5 +17,6 @@ class agendamento extends Model
         'tipo_consulta',
         'retorno',
     ];
+    protected $dates = ['data_hora_agendamento'];
     
 }

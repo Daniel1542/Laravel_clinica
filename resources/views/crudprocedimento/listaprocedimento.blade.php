@@ -23,14 +23,14 @@
   <!-- Tabela para listar os procedimentos -->
   <div class="container">
     <table class="table" id="caixa2">
-      <tbody>
+      <tbody class="table_body">
         @foreach($procedimentos as $procedimento)
           <tr id="caixa3">            
             <td>Codigo: {{ $procedimento->Codigo }}</td>
             <td>Descrição: {{ $procedimento->Descricao }}</td>
             <td>Valor: {{ $procedimento->Valor }}</td>
             <td>Observações: {{ $procedimento->Observacoes }}</td>
-            <td id="caixa3">
+            <td>
               <form action="{{ route('procedimentos.show', ['id' => $procedimento->id]) }}" method="GET" style="display: inline;">
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">Ver Detalhes</button>

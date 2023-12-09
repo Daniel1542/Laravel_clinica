@@ -5,8 +5,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 
-
-
 class UserController extends Controller
 {
     public function index()
@@ -22,7 +20,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:users',
+            'name' => 'required|string|min:6|regex:/[0-9]/|unique:users',
             'password' => 'required|string|min:6|regex:/[0-9]/',
         ]);
         $user = new User;

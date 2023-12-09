@@ -4,7 +4,7 @@
 
 <section class="secao_cria">
   <div class="container" id="caixa4">
-    <h1 class="mt-4">Buscar agendamento por codigo</h1>
+    <h1 class="mt-4">Buscar agendamento código</h1>
     <div class="container mb-4">
       <form action="{{ route('agendamentos.buscarPorCodigo') }}" method="GET">
         {{ csrf_field() }}
@@ -23,14 +23,14 @@
   <!-- Tabela para listar os agendamento -->
   <div class="container">
     <table class="table" id="caixa2">
-      <tbody>
+      <tbody class="table_body">
         @foreach($agendamentos as $agendamento)
           <tr id="caixa3">            
             <td>Codigo: {{ $agendamento->Codigo }}</td>
             <td>Descrição: {{ $agendamento->Descricao }}</td>
             <td>Valor: {{ $agendamento->Valor }}</td>
             <td>Observações: {{ $agendamento->Observacoes }}</td>
-            <td id="caixa3">
+            <td>
               <form action="{{ route('agendamento.show', ['id' => $agendamento->id]) }}" method="GET" style="display: inline;">
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">Ver Detalhes</button>

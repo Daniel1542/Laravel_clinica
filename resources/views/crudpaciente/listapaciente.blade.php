@@ -31,7 +31,7 @@
                   <td>CPF do paciente: {{ $pacientes->CPF }}</td>
                   <td>Telefone do paciente: {{ $pacientes->Telefone }}</td>
                   <td>Email do paciente: {{ $pacientes->Email }}</td>
-                  <td id="caixa3">
+                  <td id="bota">
                     <form action="{{ route('pacientes.show', ['id' => $pacientes->id]) }}" method="GET" style="display: inline;">
                       {{ csrf_field() }}
                       <button type="submit" class="btn btn-primary">Ver Detalhes</button>

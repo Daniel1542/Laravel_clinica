@@ -20,6 +20,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProcedimentoController;
 use App\Http\Controllers\AgendamentoController;
+use App\Http\Controllers\ProntuarioController;
 
 
 Route::resource('medicos', MedicoController::class);
@@ -27,6 +28,20 @@ Route::resource('pacientes', PacienteController::class);
 Route::resource('funcionarios', FuncionarioController::class);
 Route::resource('procedimentos', ProcedimentoController::class);
 Route::resource('agendamentos', AgendamentoController::class);
+Route::resource('prontuarios', ProntuarioController::class);
+
+/*prontuário*/
+
+Route::get('/listaprontuario', [ProntuarioController::class, 'lista'])->name('prontuarios.listaprontuario');
+Route::get('/mostraprontuario', [ProntuarioController::class, 'mostra'])->name('prontuarios.mostra');
+Route::get('/buscar-prontuario', [ProntuarioController::class, 'buscarPorCodigo'])->name('prontuarios.buscarPorCodigo');
+Route::get('/prontuarios/create/{paciente_id}', [ProntuarioController::class, 'create'])->name('prontuarios.create');
+
+Route::get('/prontuario/editar/{id}', [ProntuarioController::class, 'edit'])->name('prontuarios.edit');
+Route::put('/prontuario/{id}', [ProntuarioController::class, 'update'])->name('prontuarios.update');
+Route::delete('/prontuario/{id}', [ProntuarioController::class, 'destroy'])->name('prontuarios.destroy');
+
+Route::get('/prontuario/{id}', [ProntuarioController::class, 'show'])->name('prontuarios.show');
 
 /*agendamento*/
 
@@ -38,15 +53,15 @@ Route::get('/agendamentos/editar/{id}', [AgendamentoController::class, 'edit'])-
 Route::put('/agendamentos/{id}', [AgendamentoController::class, 'update'])->name('agendamentos.update');
 Route::delete('/agendamentos/{id}', [AgendamentoController::class, 'destroy'])->name('agendamentos.destroy');
 
+Route::get('/create-agendamento', [AgendamentoController::class, 'create'])->name('agendamentos.create');
+
 Route::get('/agendamentos/{id}', [AgendamentoController::class, 'show'])->name('agendamentos.show');
 Route::patch('/agendamentos/{id}/retorno', [AgendamentoController::class, 'updateRetorno'])->name('agendamentos.updateRetorno');
 
 
 /*dashboard*/
 
-Route::get('/data', [LoginController::class, 'dataagora'])->name('login.dataagora');
-Route::get('/contapaciente', [PacienteController::class, 'contapaciente'])->name('pacientes.contapaciente');
-Route::get('/contamedico', [MedicoController::class, 'contamedico'])->name('medicos.contamedico');
+Route::get('/dashboard', [LoginController::class, 'dash'])->name('principal.dashboard');
 
 /*medico*/
 
@@ -108,5 +123,5 @@ Route::post('/auth', [LoginController::class, 'auth'])->name('auth');
 /*User*/
 
 Route::get('/', [UserController::class, 'index'])->name('user.index');
-Route::get('/dashboard', [LoginController::class, 'dash'])->name('dashboard');
+
 

@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\funcionario;
+use App\Models\Funcionario;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -123,6 +122,19 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'NomeCompleto' => 'required|string|max:25',
+            'DataNascimento' => 'required|string|date',
+            'RG' => 'required|numeric|digits:7',
+            'CPF' => 'required|digits:11|numeric',
+            'Endereco' => 'required|string|max:25',
+            'Telefone' => 'required|numeric',
+            'Email' => 'required|string|email|max:20',
+            'DataAdmisssao' => 'required|date',
+            'DataDemissao' => 'date',
+            'Cargo' => 'required|string|max:25',
+
+        ]);
         $funcionario = Funcionario::find($id);
         $funcionario->NomeCompleto = $request->NomeCompleto;
         $funcionario->DataNascimento = $request->DataNascimento;

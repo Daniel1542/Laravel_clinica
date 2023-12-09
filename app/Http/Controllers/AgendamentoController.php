@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\agendamento;
+use App\Models\Agendamento;
 use Illuminate\Http\Request;
 
 class AgendamentoController extends Controller
@@ -39,7 +39,8 @@ class AgendamentoController extends Controller
      */
     public function create()
     {
-        return view('crudagendamento.criaagendamento');
+        $novoAgendamento  = new Agendamento();
+        return view('crudagendamento.criaagendamento', compact('novoAgendamento'));
     }
 
     /**
@@ -72,13 +73,13 @@ class AgendamentoController extends Controller
     
     public function show($id)
     {
-        $agendamentos = Agendamento::find($id);
+        $agendamento = Agendamento::find($id);
 
         if (!$agendamentos) {
             return abort(404); 
     }
 
-        return view('crudagendamento.criaagendamento', compact('agendamentos'));
+        return view('crudagendamento.criaagendamento', compact('agendamento'));
     }
     
     /**

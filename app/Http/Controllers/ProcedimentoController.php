@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\procedimento;
+use App\Models\Procedimento;
 use Illuminate\Http\Request;
-
 class ProcedimentoController extends Controller
 {
     /**
@@ -104,6 +103,14 @@ class ProcedimentoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'Codigo' => 'required|string|max:10',
+            'Descricao' => 'required|string',
+            'Valor' => 'required|numeric',
+            'Observacoes' => 'required|string',
+            
+        ]);
+        
         $procedimento = Procedimento::find($id);
         $procedimento->Codigo = $request->Codigo;
         $procedimento->Descricao = $request->Descricao;

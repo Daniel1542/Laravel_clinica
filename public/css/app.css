@@ -5,15 +5,27 @@
 
 /*main*/ 
 .msm{
+  display: flex;
   align-items: center;
   background-color: rgb(138, 224, 124);
   width: 20vw;
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+#organiza{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }
 
 .corpo{
   display: flex;
   background-color: rgb(192, 208, 233);
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 ul {
@@ -27,77 +39,78 @@ a{
 
 header{
   display: flex;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
-  margin-top: 25px;
-  gap: 20px;
+  gap: 15px;
   background-color: #fff; 
-
 }
 
 .secao_cria{
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 5vh;
-  gap: 10px;
+  gap: 15px;
 }
 
-#dropdowntodo{
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-direction: row;
+/* Estilos para o menu suspenso */
+.dropdown {
+  margin: 10px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
   
-  gap: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
-#dropdownmenu{
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
-#drop-submenu {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.125); 
-  border-radius: 0.25rem; 
-  gap: 20px;
-}
-#p-options{
-  display: flex;
-  gap: 20px;
+.custom-dropdown-item {
+  color: #333;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
-.dropdown-item {
-  color: #212529; 
-  padding: 20px 10px; 
-  font-weight: medium;
-  background-color: transparent;
-  border: 0;
-  text-decoration: none; 
-
+.custom-dropdown-item:hover {
+  color: rgba(185, 21, 21, 0.1);
+  /* Cor de fundo quando o item é hover */
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b; 
-  background-color: #f8f9fa; 
+.btn-secondary {
+  background-color: #6c757d;
+
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.dropdown-toggle:focus::after {
-  border-top: 0; 
-  border-bottom: 0.3em solid; 
+.btn-secondary:hover {
+  background-color: #495057; /* Cor de fundo quando o botão é hover */
 }
 
 .imagem{
   width: 100;
   height: 200px;
   margin-bottom: 40px;
+}
+
+.table_body{
+  display: flex;
+ 
+  flex-direction: column;
+  gap: 10px;
 }
 
 /*cadastro*/ 
@@ -127,14 +140,15 @@ header{
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  margin-top: 20px;
-  
+  margin-top: 40px; 
 }
+
 .article_geral{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  gap: 50px;
+  margin-top: 50px;
+  
+  background-color: rgb(196, 110, 104);
   flex-direction: row;
 }
 
@@ -142,16 +156,17 @@ header{
 
 #bota{
   display: flex;
+  flex-direction: row;
+  background-color: rgb(196, 110, 104);
+  gap: 10px;
   justify-content: center;
 }
 #caixa2{
   display: flex;
   justify-content: left;
-  flex-direction: column;
   padding: 60px 60px;
   gap: 20px;
   background-color: rgb(196, 110, 104);
-
 }
 #caixa3{
   display: flex;
@@ -164,4 +179,46 @@ header{
   align-items: center;
   flex-direction: column;
   gap: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+  header{
+    flex-direction: column;
+    gap: 1px;
+  }
+  .secao_dash{
+    margin-top: 20px; 
+  }
+  .secao_cria {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .dropdown {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    text-align: left;
+  }
+
+  .article_geral {
+    flex-direction: column;
+  }
+  #caixa2{
+    padding: 10px;
+    gap: 15px;
+    width: 100vw;
+  }
+  #caixa4 {
+    padding: 10px;  
+  }
+  #caixa3{
+    justify-content: center;
+    flex-direction: column;
+    width: 95vw;
+    gap: 5px;
+  }
 }

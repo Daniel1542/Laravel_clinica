@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\paciente;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -44,14 +43,14 @@ class PacienteController extends Controller
         $request->validate([
             'NomeCompleto' => 'required|string|max:20',
             'DataNascimento' => 'required|string|date',
-            'RG' => 'required|numeric|digits:7|unique:paciente',
-            'CPF' => 'required|digits:11|unique:paciente|numeric',
+            'RG' => 'required|numeric|digits:7|unique:pacientes',
+            'CPF' => 'required|digits:11|unique:pacientes|numeric',
             'Endereco' => 'required|string|max:25',
-            'Telefone' => 'required|unique:paciente|numeric',
-            'Email' => 'required|string|email|unique:paciente|max:20',
+            'Telefone' => 'required|unique:pacientes|numeric',
+            'Email' => 'required|string|email|unique:pacientes|max:20',
             'Datacadastro' => 'required|date',
             'Historico' => 'required|string|max:25',
-            'Informacoes' => 'required',
+            'Informacoes' => 'required|string',
 
         ]);
         $pacient = new paciente;
@@ -73,9 +72,8 @@ class PacienteController extends Controller
             $requestImage->move(public_path('img/fotopaciente'), $imageName);
             $pacient->image = $imageName;
         }
-
         $pacient->save();
-        return redirect('/listapaciente')->with('msg', 'Paciente cadastrado com sucesso.');
+        return redirect()->route('prontuarios.create', ['paciente_id' => $pacient->id])->with('msg', 'Paciente cadastrado com sucesso.');
         
     }
 
@@ -102,8 +100,8 @@ class PacienteController extends Controller
         if (!$paciente) {
             return redirect()->route('dashboard')->with('msg', 'paciente não encontrado.');
         }
-
         return view('crudpaciente.editarpaciente', compact('paciente'));
+
     }
 
     public function buscarPorCPF(Request $request)
@@ -123,6 +121,19 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'NomeCompleto' => 'required|string|max:20',
+            'DataNascimento' => 'required|string|date',
+            'RG' => 'required|numeric|digits:7',
+            'CPF' => 'required|digits:11|numeric',
+            'Endereco' => 'required|string|max:25',
+            'Telefone' => 'required|numeric',
+            'Email' => 'required|string|email|max:20',
+            'Datacadastro' => 'required|date',
+            'Historico' => 'required|string|max:25',
+            'Informacoes' => 'required|string',
+        ]);
+
         $paciente = Paciente::find($id);
         $paciente->NomeCompleto = $request->NomeCompleto;
         $paciente->DataNascimento = $request->DataNascimento;
@@ -147,7 +158,7 @@ class PacienteController extends Controller
             $paciente->image = $imageName;
         }
         $paciente->save();
-        return redirect('/dashboard')->with('msg', 'paciente atualizado com sucesso.');
+        return redirect()->route('prontuarios.edit', ['id' => $paciente-> id])->with('msg', 'Paciente editado com sucesso.');
     }
 
     /**

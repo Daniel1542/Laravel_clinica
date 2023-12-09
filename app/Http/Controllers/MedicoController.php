@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\medico;
+use App\Models\Medico;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
 
 class MedicoController extends Controller
 {
@@ -13,10 +11,13 @@ class MedicoController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    { 
+    
         $medicos = Medico::all();
-        return view('crudmedico.listamedico', compact('medicos'));
+        
+        return view('principal.dashboard', compact('medicos'));
     }
+
     public function mostra()
     {
         $medicos = Medico::all();
@@ -44,11 +45,11 @@ class MedicoController extends Controller
         $request->validate([
             'NomeCompleto' => 'required|string|max:20',
             'DataNascimento' => 'required|date',
-            'RG' => 'required|numeric|digits:7|unique:medico',
-            'CPF' => 'required|digits:11|unique:medico|numeric',
+            'RG' => 'required|numeric|digits:7|unique:medicos',
+            'CPF' => 'required|digits:11|unique:medicos|numeric',
             'Endereco' => 'required|string|max:20',
-            'Telefone' => 'required|unique:medico|numeric',
-            'Email' => 'required|string|email|unique:medico|max:20',
+            'Telefone' => 'required|unique:medicos|numeric',
+            'Email' => 'required|string|email|unique:medicos|max:20',
             'Datacadastro' => 'required|date',
             'Especialidade' => 'required|string|max:25',
         ]);
@@ -62,6 +63,7 @@ class MedicoController extends Controller
         $medic->Email = $request->Email;
         $medic->Datacadastro = $request->Datacadastro;
         $medic->Especialidade = $request->Especialidade;
+        $medic->medico_id = $request->medico_id;
 
         if($request->hasfile('image') && $request->file('image')->isValid()){
             $requestImage = $request->image;
@@ -164,10 +166,6 @@ class MedicoController extends Controller
         $medic->delete();
         return redirect('/dashboard')->with('msg', 'Médico excluido com sucesso.');
     }
-    public function contamedico()
-    {     
-        $quantidade= DB::table('medico')->count();
-        return view('principal.dashboard', compact('quantidade'));
-    }
+   
     
 }
